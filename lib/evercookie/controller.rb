@@ -48,17 +48,17 @@ module Evercookie
 
     # Renders javascript with evercookie set script
     def set
-      @data = session[Evercookie.hash_name_for_set] || {key: '', value: ''}
+      @data = session[Evercookie.hash_name_for_set].symbolize_keys || {key: '', value: ''}
     end
 
     # Renders javascript with evercookie get script
     def get
-      @data = session[Evercookie.hash_name_for_get] || {key: '', value: ''}
+      @data = session[Evercookie.hash_name_for_get].symbolize_keys || {key: '', value: ''}
     end
 
     # Saves current evercookie value to session
     def save
-      if data = session[Evercookie.hash_name_for_get]
+      if data = session[Evercookie.hash_name_for_get].symbolize_keys
         if data[:key] && cookies[data[:key]]
           session[Evercookie.hash_name_for_saved] =
               { data[:key] => cookies[data[:key]] }
