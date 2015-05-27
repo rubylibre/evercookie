@@ -7,7 +7,7 @@ module Evercookie
     #   <%= set_evercookie(:key, :value) %>
     def set_evercookie(key, value)
       session[Evercookie.hash_name_for_set] = { key: key, value: value }
-      session[Evercookie.hash_name_for_saved] = { key, value }
+      session[Evercookie.hash_name_for_saved] = { key => value }
       render inline: "<%= javascript_include_tag 'ec', evercookie_set_path -%>"
     end
 
